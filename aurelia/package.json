@@ -35,8 +35,8 @@
     "aurelia-templating-resources": "^1.2.0",
     "aurelia-templating-router": "^1.0.0",
     "bluebird": "^3.4.6",
-    "font-awesome": "^4.7.0",
     "jquery": "^3.1.1",
+    "semantic-ui-css": "github:semantic-org/Semantic-UI-CSS",
     "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {

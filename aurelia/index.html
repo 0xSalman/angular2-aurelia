@@ -9,10 +9,8 @@
   </head>
   <body aurelia-app="main">
     <div class="splash">
-      <div class="message">
-        App is busy loading everything it needs to run
-      </div>
-      <i class="fa fa-spinner fa-spin"></i>
+      <div>App is loading</div>
+      <div class="ui active centered massive inline loader"></div>
     </div>
     <% if (htmlWebpackPlugin.options.ENV === 'development') { %>
     <!-- Webpack Dev Server reload -->

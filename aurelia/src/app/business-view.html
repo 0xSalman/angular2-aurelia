@@ -1,0 +1,30 @@
+<template>
+  <h2>List of businesses that sell peaches in the U.S.</h2>
+  <table class="ui unstackable raised celled table">
+    <thead>
+      <tr>
+        <th>Business Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zipcode</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr repeat.for="business of businesses">
+        <td>${business.name}</td>
+        <td>${business.address}</td>
+        <td>${business.city}</td>
+        <td>${business.state}</td>
+        <td>${business.zipcode}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="5">
+          <div class="ui active centered inline medium text loader" if.bind="loading">Data is Loading</div>
+        </th>
+      </tr>
+    </tfoot>
+  </table>
+</template>

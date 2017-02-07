@@ -1,7 +1,13 @@
-import 'font-awesome/css/font-awesome.css';
+import 'semantic-ui-css/semantic.css';
+import 'semantic-ui-css';
 import './styles/global.css';
 import * as Bluebird from 'bluebird';
+
 Bluebird.config({warnings: false});
+
+/**
+ * Bootstrap webapp and configure its starting point
+ */
 
 export async function configure(aurelia) {
   

@@ -1,13 +1,18 @@
 <template>
   <header>
-    <nav>
-      <ul>
-        <li>Link 1</li>
-        <li>Link 2</li>
-      </ul>
-    </nav>
+    <div class="ui raised top fixed pointing menu">
+      <div class="ui container">
+        <div class="nav menu">
+          <a repeat.for="row of router.navigation"
+             href.bind="row.href"
+             class="${row.isActive ? 'active' : ''} item">
+            ${row.title}
+          </a>
+        </div>
+      </div>
+    </div>
   </header>
-  <main class="page-host">
+  <main class="ui container">
     <router-view></router-view>
   </main>
 </template>
