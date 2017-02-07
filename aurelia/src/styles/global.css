@@ -12,3 +12,8 @@
 main {
   margin-top: 5em;
 }
+
+.page.selection {
+  display: inline;
+  margin-left: 2em;
+}

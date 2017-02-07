@@ -13,7 +13,8 @@ export async function configure(aurelia) {
   
   aurelia.use
     .standardConfiguration()
-    .developmentLogging();
+    .developmentLogging()
+    .feature('app/common');
   
   await aurelia.start().then(() => aurelia.setRoot('app/app'));
 }

@@ -1,6 +1,6 @@
 <template>
   <h2>List of businesses that sell peaches in the U.S.</h2>
-  <table class="ui unstackable raised celled table">
+  <table class="ui sortable unstackable raised celled table">
     <thead>
       <tr>
         <th>Business Name</th>
@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr repeat.for="business of businesses">
+      <tr repeat.for="business of businesses | paginate:pager.from:pager.to">
         <td>${business.name}</td>
         <td>${business.address}</td>
         <td>${business.city}</td>
@@ -23,6 +23,7 @@
       <tr>
         <th colspan="5">
           <div class="ui active centered inline medium text loader" if.bind="loading">Data is Loading</div>
+          <pager view-model.ref="pager" if.bind="!loading" total-items.bind="businesses.length"></pager>
         </th>
       </tr>
     </tfoot>

@@ -1,0 +1,31 @@
+<template>
+
+  <div class="ui left floated basic segment">
+    <div class="ui left floated pagination menu">
+      <a class="${isFirstPage?'disabled':''} icon item"
+         click.delegate="prevPage()" title="Page ${prevPageNo}">
+        <i class="left chevron icon"></i>
+      </a>
+      <a class="${page.active?'active':''} ${page.disabled?'disabled':''} item" repeat.for="page of displayablePages"
+         click.delegate="goToPage(page.page)" title="Page ${page.page + 1}">
+        <span if.bind="page.disabled">...</span>
+        <span if.bind="!page.disabled">${page.page + 1}</span>
+      </a>
+      <a class="${isLastPage?'disabled':''} icon item"
+         click.delegate="nextPage()" title="Page ${nextPageNo}">
+        <i class="right chevron icon"></i>
+      </a>
+    </div>
+    <div class="ui page selection">
+      <select class="ui dropdown" value.bind="pageSize">
+        <option repeat.for="ps of pageSizes" value.bind="ps">${ps}</option>
+      </select>
+      <label>Items per page</label>
+    </div>
+  </div>
+  <div class="ui right floated basic segment">
+    Showing ${from + 1}-${to} of ${totalItems} items
+  </div>
+
+
+</template>
