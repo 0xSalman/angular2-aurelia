@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%- htmlWebpackPlugin.options.title %></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="<%- htmlWebpackPlugin.options.baseUrl %>">
+  </head>
+  <body aurelia-app="main">
+    <div class="splash">
+      <div class="message">
+        App is busy loading everything it needs to run
+      </div>
+      <i class="fa fa-spinner fa-spin"></i>
+    </div>
+    <% if (htmlWebpackPlugin.options.ENV === 'development') { %>
+    <!-- Webpack Dev Server reload -->
+    <script src="/webpack-dev-server.js"></script>
+    <% } %>
+  </body>
+</html>
