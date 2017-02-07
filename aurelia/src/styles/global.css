@@ -17,3 +17,15 @@ main {
   display: inline;
   margin-left: 2em;
 }
+
+.ui.sortable.table thead th:after {
+  content: "\f0dc"
+}
+
+.ui.sortable.table thead th.ascending:after {
+  content: "\f160";
+}
+
+.ui.sortable.table thead th.descending:after {
+  content: "\f161";
+}

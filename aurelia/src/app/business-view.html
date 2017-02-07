@@ -3,15 +3,17 @@
   <table class="ui sortable unstackable raised celled table">
     <thead>
       <tr>
-        <th>Business Name</th>
+        <th class="sorted ${sortingClass['name']}" click.delegate="applySorting('name')">
+          Business Name
+        </th>
         <th>Address</th>
-        <th>City</th>
-        <th>State</th>
-        <th>Zipcode</th>
+        <th class="sorted ${sortingClass['city']}" click.delegate="applySorting('city')">City</th>
+        <th class="sorted ${sortingClass['state']}" click.delegate="applySorting('state')">State</th>
+        <th class="sorted ${sortingClass['zipcode']}" click.delegate="applySorting('zipcode')">Zipcode</th>
       </tr>
     </thead>
     <tbody>
-      <tr repeat.for="business of businesses | paginate:pager.from:pager.to">
+      <tr repeat.for="business of businesses | sort:sortBy:sortDirection | paginate:pager.from:pager.to">
         <td>${business.name}</td>
         <td>${business.address}</td>
         <td>${business.city}</td>

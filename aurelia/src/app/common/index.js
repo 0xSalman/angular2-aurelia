@@ -7,5 +7,6 @@ export function configure(config) {
   config.globalResources(
     './pagination/paginate-converter',
     './pagination/pager-element',
+    './sorting/sort-converter',
   );
 }

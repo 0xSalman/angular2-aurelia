@@ -6,7 +6,8 @@ A simple webapp using Aurelia framework that reads data from api and displays in
 2. Use ES6/ES7
 3. Use semantic-ui framework for styling
 4. Get data from an external api
-5. Client side pagination 
+5. Client side pagination
+6. Client side sorting
 
 ## Requirements
 - node >= 4.0
