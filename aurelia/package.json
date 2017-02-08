@@ -1,11 +1,11 @@
 {
   "name": "pras-webapp",
   "version": "1.0.0",
-  "description": "PolicyReporter webapp assignment using Aurelia",
+  "description": "Webapp using Aurelia",
   "author": "Muhammad Salman",
   "repository": {
     "type": "git",
-    "url": "https://github.com/msalman86/pr-assignment"
+    "url": "https://github.com/msalman86/angular2-aurelia"
   },
   "license": "MIT",
   "main": "dist/main.js",

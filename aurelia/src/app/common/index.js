@@ -8,5 +8,6 @@ export function configure(config) {
     './pagination/paginate-converter',
     './pagination/pager-element',
     './sorting/sort-converter',
+    './filtering/filter-converter',
   );
 }

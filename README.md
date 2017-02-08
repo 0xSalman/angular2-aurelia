@@ -10,3 +10,4 @@ Some key features:
 4. Get data from an external api
 5. Client side pagination
 6. Client side sorting
+7. Client side filtering

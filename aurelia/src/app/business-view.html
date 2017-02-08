@@ -3,17 +3,24 @@
   <table class="ui sortable unstackable raised celled table">
     <thead>
       <tr>
-        <th class="sorted ${sortingClass['name']}" click.delegate="applySorting('name')">
-          Business Name
+        <th class="${column.sort?'sorted':''} ${column.sortClass}"
+            repeat.for="column of columns" click.delegate="applySorting(column.name)">
+          ${column.heading}
         </th>
-        <th>Address</th>
-        <th class="sorted ${sortingClass['city']}" click.delegate="applySorting('city')">City</th>
-        <th class="sorted ${sortingClass['state']}" click.delegate="applySorting('state')">State</th>
-        <th class="sorted ${sortingClass['zipcode']}" click.delegate="applySorting('zipcode')">Zipcode</th>
+      </tr>
+      <tr>
+        <th repeat.for="column of columns">
+          <div class="ui icon input" if.bind="column.filter">
+            <input type="text" placeholder="Filter..." value.bind="column.filterValue & throttle"
+                   input.delegate="applyFiltering(column.name)"/>
+            <i class="search icon"></i>
+          </div>
+        </th>
       </tr>
     </thead>
     <tbody>
-      <tr repeat.for="business of businesses | sort:sortBy:sortDirection | paginate:pager.from:pager.to">
+      <tr
+        repeat.for="business of businesses | filter:columns:filterBy:filterValue | sort:columns:sortBy:sortDirection | paginate:pager.from:pager.to">
         <td>${business.name}</td>
         <td>${business.address}</td>
         <td>${business.city}</td>
@@ -30,4 +37,5 @@
       </tr>
     </tfoot>
   </table>
+
 </template>

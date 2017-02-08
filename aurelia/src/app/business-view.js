@@ -16,14 +16,57 @@ export class BusinessView {
     this.apiUrl = 'https://zrn2cbypo9.execute-api.us-west-2.amazonaws.com';
     this.businesses = [];
     this.loading = true;
-    this.sortDirection = 'asc';
+    this.filterBy = '';
+    this.filterValue = '';
     this.sortBy = 'name';
-    this.sortingClass = {
-      name: '',
-      city: '',
-      state: '',
-      zipcode: ''
-    };
+    this.sortDirection = 'asc';
+    this.columns = [
+      {
+        name: 'name',
+        heading: 'Business Name',
+        filterValue: '',
+        sortDirection: 'asc',
+        sortClass: '',
+        sort: true,
+        filter: true
+      },
+      {
+        name: 'address',
+        heading: 'Address',
+        filterValue: '',
+        sortDirection: '',
+        sortClass: '',
+        sort: false,
+        filter: true
+      },
+      {
+        name: 'city',
+        heading: 'City',
+        filterValue: '',
+        sortDirection: '',
+        sortClass: '',
+        sort: true,
+        filter: true
+      },
+      {
+        name: 'state',
+        heading: 'State',
+        filterValue: '',
+        sortDirection: '',
+        sortClass: '',
+        sort: true,
+        filter: true
+      },
+      {
+        name: 'zipcode',
+        heading: 'Zipcode',
+        filterValue: '',
+        sortDirection: '',
+        sortClass: '',
+        sort: true,
+        filter: true
+      }
+    ];
   }
   
   // fetch data from api when view model is activated
@@ -32,11 +75,11 @@ export class BusinessView {
       .then(response => { return response.json() })
       .then(data => {
         // this.logger.debug(data);
-        for (let business of data) {
+        for (const business of data) {
           this.businesses.push(new Business(business));
         }
         this.loading = false;
-        this.sortingClass.name = 'ascending';
+        this.columns[0].sortClass = 'ascending';
       })
       .catch(error => {
         this.logger.error(error);
@@ -44,15 +87,36 @@ export class BusinessView {
   }
   
   applySorting(sortBy) {
-    // reverse sorting direction when sorting by same property
-    if (sortBy === this.sortBy) {
-      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
-      this.sortingClass[this.sortBy] = this.sortDirection === 'asc' ? 'ascending' : 'descending';
-    } else {
-      this.sortDirection = 'asc';
-      this.sortingClass[this.sortBy] = '';
-      this.sortingClass[sortBy] = 'ascending';
-    }
+  
     this.sortBy = sortBy;
+    const colIndex = this.objectIndex(sortBy);
+  
+    switch (this.columns[colIndex].sortDirection) {
+      case 'asc':
+        this.sortDirection = 'desc';
+        this.columns[colIndex].sortDirection = 'desc';
+        this.columns[colIndex].sortClass = 'descending';
+        break;
+      case 'desc':
+        this.sortDirection = '';
+        this.columns[colIndex].sortDirection = '';
+        this.columns[colIndex].sortClass = '';
+        break;
+      default:
+        this.sortDirection = 'asc';
+        this.columns[colIndex].sortDirection = 'asc';
+        this.columns[colIndex].sortClass = 'ascending';
+        break;
+    }
+  }
+  
+  applyFiltering(filterBy) {
+    const colIndex = this.objectIndex(filterBy);
+    this.filterBy = this.columns[colIndex].name;
+    this.filterValue = this.columns[colIndex].filterValue;
+  }
+  
+  objectIndex(prop) {
+    return this.columns.findIndex(col => col.name === prop);
   }
 }
