@@ -20,14 +20,14 @@ var baseUrl = '/';
  */
 module.exports = {
   entry: {
-    'app': [srcDir + '/main'],
-    'vendor': Object.keys(project.dependencies).filter(dep => dep.startsWith('aurelia-')),
+    app: [srcDir + '/main'],
+    vendor: Object.keys(project.dependencies).filter(dep => dep.startsWith('aurelia-')),
   },
   output: {
     path: outDir,
     filename: '[name]-bundle.js'
   },
-  devtool: 'source-map',
+  devtool: 'cheap-module-source-map',
   module: {
     loaders: [
       {
