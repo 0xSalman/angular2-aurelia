@@ -1,0 +1,21 @@
+<table class="table table-bordered">
+  <thead class="thead-default">
+    <tr>
+      <th *ngFor="let column of columns">{{column.heading}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let business of businesses">
+      <td>{{business.name}}</td>
+      <td>{{business.address}}</td>
+      <td>{{business.city}}</td>
+      <td>{{business.state}}</td>
+      <td>{{business.zipcode}}</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <th colspan="5">
+      Pagination
+    </th>
+  </tfoot>
+</table>

@@ -11,20 +11,34 @@ var outDir = path.resolve('dist');
 var env = 'development';
 var title = 'Angular2 ES6/ES7 + Webpack';
 var baseUrl = '/';
+// var hmr = env === 'development';
 
 /**
  * Main Webpack Configuration
  */
 module.exports = {
   entry: {
-    'app': [srcDir + '/main'],
-    'vendor': [srcDir + '/vendor.js'],
+    app: [srcDir + '/main'],
+    vendor: [
+      'core-js/client/shim',
+      'zone.js/dist/zone',
+      'zone.js/dist/long-stack-trace-zone',
+      '@angular/platform-browser',
+      '@angular/platform-browser-dynamic',
+      '@angular/core',
+      '@angular/common',
+      // '@angular/forms',
+      '@angular/http',
+      '@angular/router',
+      // '@angularclass/hmr',
+      'rxjs',
+    ]
   },
   output: {
     path: outDir,
     filename: '[name]-bundle.js'
   },
-  devtool: 'source-map',
+  devtool: 'cheap-module-source-map',
   module: {
     loaders: [
       {
@@ -53,9 +67,11 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
+      // HMR: hmr,
       'process.env': {
         ENV: JSON.stringify(env),
-        NODE_ENV: JSON.stringify(env)
+        NODE_ENV: JSON.stringify(env),
+        // HMR: hmr
       }
     }),
     // Workaround needed for angular 2 angular/angular#11580
@@ -63,6 +79,11 @@ module.exports = {
       /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
       srcDir
     ),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      Tether: 'tether',
+    }),
     new HtmlWebpackPlugin({
       title: title,
       env: env,
