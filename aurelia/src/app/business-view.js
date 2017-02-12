@@ -90,23 +90,24 @@ export class BusinessView {
   
     this.sortBy = sortBy;
     const colIndex = this.objectIndex(sortBy);
-  
-    switch (this.columns[colIndex].sortDirection) {
-      case 'asc':
-        this.sortDirection = 'desc';
-        this.columns[colIndex].sortDirection = 'desc';
-        this.columns[colIndex].sortClass = 'descending';
-        break;
-      case 'desc':
-        this.sortDirection = '';
-        this.columns[colIndex].sortDirection = '';
-        this.columns[colIndex].sortClass = '';
-        break;
-      default:
-        this.sortDirection = 'asc';
-        this.columns[colIndex].sortDirection = 'asc';
-        this.columns[colIndex].sortClass = 'ascending';
-        break;
+    if (this.columns[colIndex].sort) {
+      switch (this.columns[colIndex].sortDirection) {
+        case 'asc':
+          this.sortDirection = 'desc';
+          this.columns[colIndex].sortDirection = 'desc';
+          this.columns[colIndex].sortClass = 'descending';
+          break;
+        case 'desc':
+          this.sortDirection = '';
+          this.columns[colIndex].sortDirection = '';
+          this.columns[colIndex].sortClass = '';
+          break;
+        default:
+          this.sortDirection = 'asc';
+          this.columns[colIndex].sortDirection = 'asc';
+          this.columns[colIndex].sortClass = 'ascending';
+          break;
+      }
     }
   }
   

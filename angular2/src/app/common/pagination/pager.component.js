@@ -1,6 +1,11 @@
 import {Component, Input, SimpleChange} from '@angular/core';
 import template from './pager.component.html';
 
+/**
+ * Component that handles pagination ui controls
+ * and determines how much and what data should be displayed
+ */
+
 @Component({
   selector: 'pager',
   template: template

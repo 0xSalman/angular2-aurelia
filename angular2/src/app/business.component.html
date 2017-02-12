@@ -1,11 +1,14 @@
 <table class="table table-bordered">
   <thead class="thead-default">
     <tr>
-      <th *ngFor="let column of columns">{{column.heading}}</th>
+      <th *ngFor="let column of columns" (click)="applySorting(column.name)" [class.sortable]="column.sort">
+        {{column.heading}}
+        <i *ngIf="column.sort" class="fa" [ngClass]="column.sortClass"></i>
+      </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let business of businesses | paginate:{from:pager.from,to:pager.to}">
+    <tr *ngFor="let business of businesses | sort:{fields:columns} | paginate:{from:pager.from,to:pager.to}">
       <td>{{business.name}}</td>
       <td>{{business.address}}</td>
       <td>{{business.city}}</td>

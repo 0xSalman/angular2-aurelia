@@ -8,7 +8,7 @@ main {
 }
 
 .ui.sortable.table thead th:after {
-  content: "\f0dc"
+  content: "\f0dc";
 }
 
 .ui.sortable.table thead th.ascending:after {

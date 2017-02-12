@@ -1,18 +1,18 @@
-/**
- * A custom converter that sorts the provided
- * list by provided fields and their sort direction
- * This is used for quick client side sorting
- */
+import {Pipe} from '@angular/core';
 
-export class SortValueConverter {
+@Pipe({
+  name: 'sort',
+  pure: false
+})
+export class SortPipe {
   
-  toView(array, fields) {
-  
-    if (array && fields) {
+  transform(array, args) {
+    
+    if (array && args.fields) {
       return array
         .slice(0)
         .sort((a, b) => {
-          return fields
+          return args.fields
             .map(o => {
               if (o.sortDirection) {
                 const factor = o.sortDirection === 'asc' ? 1 : -1;

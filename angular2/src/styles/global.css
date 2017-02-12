@@ -22,3 +22,7 @@ a {
 .hide {
   display: none;
 }
+
+.sortable {
+  cursor: pointer;
+}

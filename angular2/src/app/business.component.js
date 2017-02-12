@@ -4,6 +4,10 @@ import {Business} from './business';
 import 'rxjs/add/operator/map';
 import template from './business.component.html';
 
+/**
+ * Component that fetches and displays list of businesses
+ */
+
 @Component({
   selector: 'business',
   template: template
@@ -19,7 +23,7 @@ export class BusinessComponent {
         heading: 'Business Name',
         filterValue: '',
         sortDirection: 'asc',
-        sortClass: '',
+        sortClass: 'fa-sort-amount-asc',
         sort: true,
         filter: true
       },
@@ -28,7 +32,7 @@ export class BusinessComponent {
         heading: 'Address',
         filterValue: '',
         sortDirection: '',
-        sortClass: '',
+        sortClass: 'fa-sort',
         sort: false,
         filter: true
       },
@@ -37,7 +41,7 @@ export class BusinessComponent {
         heading: 'City',
         filterValue: '',
         sortDirection: '',
-        sortClass: '',
+        sortClass: 'fa-sort',
         sort: true,
         filter: true
       },
@@ -46,7 +50,7 @@ export class BusinessComponent {
         heading: 'State',
         filterValue: '',
         sortDirection: '',
-        sortClass: '',
+        sortClass: 'fa-sort',
         sort: true,
         filter: true
       },
@@ -55,7 +59,7 @@ export class BusinessComponent {
         heading: 'Zipcode',
         filterValue: '',
         sortDirection: '',
-        sortClass: '',
+        sortClass: 'fa-sort',
         sort: true,
         filter: true
       }
@@ -76,4 +80,33 @@ export class BusinessComponent {
       });
   }
   
+  applySorting(sortBy) {
+    
+    // this.sortBy = sortBy;
+    const colIndex = this.objectIndex(sortBy);
+    
+    if (this.columns[colIndex].sort) {
+      switch (this.columns[colIndex].sortDirection) {
+        case 'asc':
+          // this.sortDirection = 'desc';
+          this.columns[colIndex].sortDirection = 'desc';
+          this.columns[colIndex].sortClass = 'fa-sort-amount-desc';
+          break;
+        case 'desc':
+          // this.sortDirection = '';
+          this.columns[colIndex].sortDirection = '';
+          this.columns[colIndex].sortClass = 'fa-sort';
+          break;
+        default:
+          // this.sortDirection = 'asc';
+          this.columns[colIndex].sortDirection = 'asc';
+          this.columns[colIndex].sortClass = 'fa-sort-amount-asc';
+          break;
+      }
+    }
+  }
+  
+  objectIndex(prop) {
+    return this.columns.findIndex(col => col.name === prop);
+  }
 }
