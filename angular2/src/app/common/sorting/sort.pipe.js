@@ -1,5 +1,11 @@
 import {Pipe} from '@angular/core';
 
+/**
+ * A custom pipe that sorts the provided
+ * list by provided fields and their sort direction
+ * This is used for quick client side sorting
+ */
+
 @Pipe({
   name: 'sort',
   pure: false

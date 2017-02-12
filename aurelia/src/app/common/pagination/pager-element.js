@@ -25,11 +25,6 @@ export class PagerElement {
     this.displayablePages = [];
   }
   
-  attached() {
-    this.logger.debug('PagerElement attached');
-    this.calculateDisplayablePages();
-  }
-  
   calculateDisplayablePages() {
     
     const pageSize = Number(this.pageSize);
@@ -99,6 +94,11 @@ export class PagerElement {
       disabled: disabled
     };
     this.displayablePages.push(obj);
+  }
+  
+  totalItemsChanged(newValue, oldValue) {
+    this.logger.debug(`Total items changed to ${newValue}`);
+    this.calculateDisplayablePages();
   }
   
   pageSizeChanged(newValue, oldValue) {

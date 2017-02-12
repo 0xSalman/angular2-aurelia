@@ -6,6 +6,7 @@
 export function configure(config) {
   config.globalResources(
     './pagination/paginate-converter',
+    './pagination/size-converter',
     './pagination/pager-element',
     './sorting/sort-converter',
     './filtering/filter-converter',

@@ -11,7 +11,7 @@
       <tr>
         <th repeat.for="column of columns">
           <div class="ui icon input" if.bind="column.filter">
-            <input type="text" placeholder="Filter..." value.bind="column.filterValue & throttle"
+            <input type="text" placeholder="Filter..." value.bind="column.filterValue & throttle:100"
                    input.delegate="applyFiltering(column.name)"/>
             <i class="search icon"></i>
           </div>
@@ -32,7 +32,8 @@
       <tr>
         <th colspan="5">
           <div class="ui active centered inline large loader" if.bind="loading"></div>
-          <pager view-model.ref="pager" if.bind="!loading" total-items.bind="businesses.length"></pager>
+          <pager view-model.ref="pager" if.bind="!loading"
+                 total-items.bind="businesses | filter:columns:filterBy:filterValue | size"></pager>
         </th>
       </tr>
     </tfoot>

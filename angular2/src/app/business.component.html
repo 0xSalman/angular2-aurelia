@@ -8,7 +8,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let business of businesses | sort:{fields:columns} | paginate:{from:pager.from,to:pager.to}">
+    <tr>
+      <th *ngFor="let column of columns">
+        <input class="form-control" type="text" placeholder="Filter..."
+               *ngIf="column.filter" [(ngModel)]="column.filterValue"/>
+      </th>
+    </tr>
+    <tr
+      *ngFor="let business of businesses | filter:{fields:columns} | sort:{fields:columns} | paginate:{from:pager.from,to:pager.to}">
       <td>{{business.name}}</td>
       <td>{{business.address}}</td>
       <td>{{business.city}}</td>
@@ -19,7 +26,7 @@
   <tfoot>
     <tr>
       <th colspan="5">
-        <pager [totalItems]="businesses.length" #pager></pager>
+        <pager [totalItems]="(businesses | filter:{fields:columns}).length" #pager></pager>
         <div class="loading" *ngIf="loading">
           <i class="fa fa-spinner fa-spin"></i>
         </div>
