@@ -2,8 +2,6 @@
 
 A simple webapp that reads data from api and displays in tabular list. 
 
-*Implementation is not complete yet!*
-
 ## Requirements
 - node >= 4.0
 - npm >= 3.0
