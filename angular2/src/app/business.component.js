@@ -61,6 +61,7 @@ export class BusinessComponent {
       }
     ];
     this.businesses = [];
+    this.loading = true;
   }
   
   ngOnInit() {
@@ -71,6 +72,8 @@ export class BusinessComponent {
         for (const business of data) {
           this.businesses.push(new Business(business));
         }
+        this.loading = false;
       });
   }
+  
 }

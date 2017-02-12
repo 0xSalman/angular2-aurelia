@@ -5,7 +5,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let business of businesses">
+    <tr *ngFor="let business of businesses | paginate:{from:pager.from,to:pager.to}">
       <td>{{business.name}}</td>
       <td>{{business.address}}</td>
       <td>{{business.city}}</td>
@@ -14,8 +14,13 @@
     </tr>
   </tbody>
   <tfoot>
-    <th colspan="5">
-      Pagination
-    </th>
+    <tr>
+      <th colspan="5">
+        <pager [totalItems]="businesses.length" #pager></pager>
+        <div class="loading" *ngIf="loading">
+          <i class="fa fa-spinner fa-spin"></i>
+        </div>
+      </th>
+    </tr>
   </tfoot>
 </table>

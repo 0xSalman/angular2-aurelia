@@ -1,33 +1,37 @@
-import {inject, customElement, bindable, LogManager} from 'aurelia-framework';
+import {Component, Input, SimpleChange} from '@angular/core';
+import template from './pager.component.html';
 
-/**
- * Custom element that handles pagination ui controls
- * and determines how much and what data should be displayed
- */
-
-@customElement('pager')
-@inject(Element)
-export class PagerElement {
+@Component({
+  selector: 'pager',
+  template: template
+})
+export class PagerComponent {
   
-  @bindable totalItems;
-  @bindable page = 0;
-  @bindable pages;
-  @bindable pageSize = 10;
+  @Input() totalItems = 0;
   
   constructor() {
-    this.logger = LogManager.getLogger('pager-element');
+    this.from = 0;
+    this.to = 10;
     this.pageSizes = [10, 25, 50, 100];
+    this.pageSize = 10;
+    this.page = 0;
+    this.pages = 0;
     this.useStartEdge = true;
     this.useEndEdge = true;
     this.edges = 2;
     this.displayedPages = 5;
-    this.halfDisplayed = this.displayedPages / 2;
+    this.halfDisplayed = Math.ceil(this.displayedPages / 2);
     this.displayablePages = [];
   }
   
-  attached() {
-    this.logger.debug('PagerElement attached');
-    this.calculateDisplayablePages();
+  ngOnChanges(changes: SimpleChange) {
+    for (const propName in changes) {
+      const changedProp: SimpleChange = changes[propName];
+      if (propName === 'totalItems' && changedProp.currentValue > 0) {
+        this.calculateDisplayablePages();
+      }
+      console.log(changedProp);
+    }
   }
   
   calculateDisplayablePages() {
@@ -40,13 +44,14 @@ export class PagerElement {
       this.page = this.pages - 1;
       this.from = this.page * pageSize;
     }
-  
+    
     this.to = this.from + pageSize;
     if (this.to > this.totalItems) {
       this.to = this.totalItems;
     }
     
     this.displayablePages = [];
+    
     const interval = this.interval();
     
     if (interval.start > 0 && this.edges > 0) {
@@ -99,11 +104,6 @@ export class PagerElement {
       disabled: disabled
     };
     this.displayablePages.push(obj);
-  }
-  
-  pageSizeChanged(newValue, oldValue) {
-    this.logger.debug(`Page size changed to ${newValue}`);
-    this.calculateDisplayablePages();
   }
   
   nextPage() {

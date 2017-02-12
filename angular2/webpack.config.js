@@ -27,7 +27,7 @@ module.exports = {
       '@angular/platform-browser-dynamic',
       '@angular/core',
       '@angular/common',
-      // '@angular/forms',
+      '@angular/forms',
       '@angular/http',
       '@angular/router',
       // '@angularclass/hmr',

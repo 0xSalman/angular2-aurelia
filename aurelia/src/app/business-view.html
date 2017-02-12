@@ -31,7 +31,7 @@
     <tfoot>
       <tr>
         <th colspan="5">
-          <div class="ui active centered inline medium text loader" if.bind="loading">Data is Loading</div>
+          <div class="ui active centered inline large loader" if.bind="loading"></div>
           <pager view-model.ref="pager" if.bind="!loading" total-items.bind="businesses.length"></pager>
         </th>
       </tr>

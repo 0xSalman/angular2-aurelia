@@ -1,10 +1,13 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {HttpModule} from '@angular/http';
+import {FormsModule} from '@angular/forms';
 import {BusinessComponent} from './business.component';
 import {routes} from './app.routes';
 import {AppComponent} from './app.component';
+import {UtilModule} from './common';
 
 /**
  * A module class which is app's starting point
@@ -13,12 +16,15 @@ import {AppComponent} from './app.component';
 @NgModule({
   imports: [
     BrowserModule,
+    CommonModule,
     RouterModule.forRoot(routes),
-    HttpModule
+    HttpModule,
+    FormsModule,
+    UtilModule
   ],
   declarations: [
     AppComponent,
-    BusinessComponent
+    BusinessComponent,
   ],
   bootstrap: [AppComponent]
 })

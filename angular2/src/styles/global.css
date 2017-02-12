@@ -1,3 +1,24 @@
 main {
   margin-top: 5em;
 }
+
+a {
+  cursor: pointer;
+}
+
+.loading {
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.loading i {
+  font-size: 50px;
+}
+
+.display {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
