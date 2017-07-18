@@ -64,7 +64,6 @@ module.exports = {
         use: 'url-loader'
       }
     ],
-    noParse: [/.+zone\.js\/dist\/.+/, /.+angular2\/bundles\/.+/]
   },
   plugins: [
     new webpack.DefinePlugin({
